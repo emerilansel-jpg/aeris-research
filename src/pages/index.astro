@@ -1,6 +1,6 @@
 ---
 // index.astro — Aeris Research homepage
-// Niche: Technology & Innovation Intelligence
+// Design: Modern tech intelligence platform (The Information meets Product Hunt)
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
@@ -10,450 +10,483 @@ const posts = allPosts.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 ).slice(0, 3);
 
-const stats = [
-  { value: '12+', label: 'Years of Tech Research' },
-  { value: '450+', label: 'Published Tech Reports' },
-  { value: '62', label: 'Technology Sectors Covered' },
-  { value: '200+', label: 'Enterprise Clients' },
-  { value: '1,800+', label: 'Vendor Evaluations' },
-  { value: '4', label: 'Global Research Hubs' },
-];
-
-const techData = [
-  { vendor: 'OpenAI', rating: 'Strong Buy', change: '▲9.2%', positive: true },
-  { vendor: 'Cloudflare', rating: 'Outperform', change: '▲4.1%', positive: true },
-  { vendor: 'CrowdStrike', rating: 'Hold', change: '▼1.8%', positive: false },
-];
-
-const tickerHeadlines = [
-  'Anthropic Claude 4 signals next wave of enterprise AI adoption',
-  'AWS re:Invent 2026: serverless GPU compute reshapes ML deployment economics',
+const signalItems = [
+  'Anthropic Claude 4 signals next wave of enterprise AI deployment',
+  'AWS re:Invent 2026: serverless GPU reshapes ML inference economics',
   'CrowdStrike and Microsoft settle landmark breach liability dispute',
+  'Open-source LLM gap narrows — Llama 4 scores within 3% of GPT-4o',
   'Fintech consolidation accelerates as interest margins compress globally',
-  'Open-source LLM gap narrows — Llama 4 scores within 3% of GPT-4o on MMLU',
+  'Kubernetes 2.0 spec finalized — platform engineering teams respond',
+  'Databricks acquires MosaicML in $1.3B talent-plus-IP deal',
+  'Zero-trust mandates now apply to 78% of Fortune 500 technology stacks',
+];
+
+const categories = [
+  { label: 'All', href: '/research', active: true },
+  { label: 'AI & ML', href: '/research?cat=ai' },
+  { label: 'Cybersecurity', href: '/research?cat=cybersecurity' },
+  { label: 'Cloud', href: '/research?cat=cloud' },
+  { label: 'SaaS', href: '/research?cat=saas' },
+  { label: 'Fintech', href: '/research?cat=fintech' },
+  { label: 'Data', href: '/research?cat=data' },
+  { label: 'DevOps', href: '/research?cat=devops' },
+];
+
+const latestSmall = [
+  {
+    tag: 'Cybersecurity',
+    title: 'Zero Trust Is Not a Product: Architecture-First Security in 2026',
+    date: 'Jun 2, 2026',
+    img: 'https://picsum.photos/seed/cyber2/600/400',
+    href: '/research/zero-trust-architecture',
+  },
+  {
+    tag: 'Cloud',
+    title: 'FinOps 3.0: How AI Is Automating Cloud Cost Optimization',
+    date: 'May 28, 2026',
+    img: 'https://picsum.photos/seed/cloudops/600/400',
+    href: '/research/finops-ai-cloud-cost',
+  },
+  {
+    tag: 'SaaS',
+    title: 'Vertical SaaS at the Inflection Point: Where the Next $100B Companies Are Built',
+    date: 'May 22, 2026',
+    img: 'https://picsum.photos/seed/saasplatform/600/400',
+    href: '/research/vertical-saas-inflection',
+  },
 ];
 
 const sectors = [
+  { icon: '🤖', label: 'Artificial Intelligence', count: 94, href: '/research?cat=ai' },
+  { icon: '🔐', label: 'Cybersecurity', count: 78, href: '/research?cat=cybersecurity' },
+  { icon: '☁️', label: 'Cloud & Infrastructure', count: 62, href: '/research?cat=cloud' },
+  { icon: '📦', label: 'SaaS & Enterprise', count: 88, href: '/research?cat=saas' },
+  { icon: '💳', label: 'Fintech', count: 55, href: '/research?cat=fintech' },
+  { icon: '📊', label: 'Data & Analytics', count: 49, href: '/research?cat=data' },
+  { icon: '⚙️', label: 'Developer Tools', count: 41, href: '/research?cat=devops' },
+  { icon: '🔄', label: 'Digital Transformation', count: 67, href: '/research?cat=digital' },
+];
+
+const stats = [
+  { num: '450+', label: 'Reports Published' },
+  { num: '62', label: 'Technology Sectors Covered' },
+  { num: '200+', label: 'Enterprise Clients' },
+  { num: '1,800+', label: 'Vendor Evaluations' },
+];
+
+const whyPoints = [
   {
-    id: 'artificial-intelligence',
-    icon: '🤖',
-    title: 'Artificial Intelligence',
-    desc: 'Foundation model comparisons, enterprise AI deployment strategy, MLOps tooling, and the evolving economics of inference-at-scale across cloud and edge.',
-    reports: 94,
+    title: 'Zero vendor sponsorships',
+    desc: 'No paid placements, no vendor briefings that influence scores. Every rating is earned, not purchased.',
   },
   {
-    id: 'cybersecurity',
-    icon: '🔐',
-    title: 'Cybersecurity',
-    desc: 'Threat landscape analysis, zero-trust architecture adoption, vendor consolidation trends, and regulatory compliance frameworks across enterprise security.',
-    reports: 78,
+    title: 'Hands-on product testing',
+    desc: 'Every tool we rate has been tested by our analysts in real enterprise production environments.',
   },
   {
-    id: 'cloud-infrastructure',
-    icon: '☁️',
-    title: 'Cloud & Infrastructure',
-    desc: 'Multi-cloud strategy, FinOps optimization, Kubernetes maturity, and the shifting balance of power between hyperscalers, regional clouds, and bare-metal.',
-    reports: 62,
+    title: 'Transparent scoring framework',
+    desc: 'Our 40+ dimension methodology is fully documented. Clients see every weight and assumption.',
   },
   {
-    id: 'saas-enterprise',
-    icon: '📦',
-    title: 'SaaS & Enterprise Software',
-    desc: 'Vertical SaaS disruption, ERP modernization cycles, platform consolidation pressure, and pricing strategy analysis across 400+ enterprise software vendors.',
-    reports: 88,
+    title: 'Longitudinal vendor tracking',
+    desc: 'We track vendors over multi-year cycles — our assessments reflect actual execution, not just roadmaps.',
   },
   {
-    id: 'fintech',
-    icon: '💳',
-    title: 'Fintech & Digital Payments',
-    desc: 'Embedded finance evolution, real-time payments infrastructure, BNPL market dynamics, and regulatory impact on digital banking and crypto-adjacent fintech.',
-    reports: 55,
-  },
-  {
-    id: 'data-analytics',
-    icon: '📊',
-    title: 'Data & Analytics',
-    desc: 'Modern data stack architecture, the lakehouse vs. warehouse debate, real-time analytics economics, and the emerging AI-native BI vendor landscape.',
-    reports: 49,
-  },
-  {
-    id: 'developer-tools',
-    icon: '⚙️',
-    title: 'Developer Tools & DevOps',
-    desc: 'AI-assisted coding tools, platform engineering emergence, supply chain security, and the economics of developer productivity at enterprise scale.',
-    reports: 41,
-  },
-  {
-    id: 'digital-transformation',
-    icon: '🔄',
-    title: 'Digital Transformation',
-    desc: 'Enterprise modernization playbooks, legacy migration economics, change management research, and ROI benchmarking across 500+ transformation programs.',
-    reports: 67,
+    title: 'Practitioner validation network',
+    desc: '300+ active CIOs, CTOs, and security leaders validate our findings through structured panels.',
   },
 ];
 
-const featuredReports = [
-  {
-    title: 'Enterprise AI Deployment Index 2026: Adoption, ROI & Risk',
-    category: 'Artificial Intelligence',
-    pages: 86,
-    slug: 'enterprise-ai-deployment-2026',
-  },
-  {
-    title: 'Cloud Cost Optimization Playbook: FinOps at Scale',
-    category: 'Cloud & Infrastructure',
-    pages: 54,
-    slug: 'cloud-cost-optimization-finops',
-  },
-  {
-    title: 'Cybersecurity Platform Consolidation: The 2026 Landscape',
-    category: 'Cybersecurity',
-    pages: 72,
-    slug: 'cybersecurity-platform-consolidation-2026',
-  },
-  {
-    title: 'Vertical SaaS: Where the Next $100B Companies Are Built',
-    category: 'SaaS & Enterprise',
-    pages: 61,
-    slug: 'vertical-saas-next-100b',
-  },
-];
-
-const services = [
-  {
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>`,
-    title: 'Technology Intelligence',
-    desc: 'Rigorous, vendor-neutral analysis of technology markets — covering product capabilities, competitive positioning, pricing, and strategic trajectory.',
-  },
-  {
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>`,
-    title: 'Vendor Evaluation',
-    desc: 'Independent, structured vendor assessments using our proprietary scoring framework — for procurement decisions, RFP support, and board-level technology reviews.',
-  },
-  {
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
-    title: 'Due Diligence',
-    desc: 'Technical and commercial due diligence for software M&A, venture investment, and secondary transactions — with product, team, market, and IP reviews.',
-  },
-  {
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 4l-5 5-4-4-6 6"/></svg>`,
-    title: 'Market Sizing & Forecasts',
-    desc: 'Bottom-up technology market sizing, TAM/SAM/SOM modelling, and 5-year sector forecasts — built for investor decks, strategic planning, and regulatory submissions.',
-  },
-  {
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>`,
-    title: 'Advisory Retainers',
-    desc: 'Ongoing access to Aeris analysts for continuous monitoring of your technology landscape — covering competitor moves, product launches, and regulatory developments.',
-  },
-  {
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
-    title: 'Custom Research',
-    desc: 'Bespoke research programs commissioned by enterprise technology buyers, PE/VC funds, and strategy consultancies with specific intelligence requirements.',
-  },
-];
-
-const clientTypes = [
-  {
-    type: 'Enterprise Technology Buyers',
-    desc: 'CIOs, CTOs, and procurement teams rely on Aeris to shortlist vendors, validate build-vs-buy decisions, and benchmark technology spend against industry peers.',
-  },
-  {
-    type: 'Venture Capital & Growth Equity',
-    desc: 'Product due diligence, technical team assessments, and competitive landscape mapping for early and growth-stage software investments.',
-  },
-  {
-    type: 'Private Equity',
-    desc: 'Carve-out assessments, platform company technology reviews, and value creation technology roadmaps for PE-backed software and tech-enabled services companies.',
-  },
-  {
-    type: 'Management Consulting',
-    desc: 'White-label research capacity and proprietary data sets to support technology strategy, digital transformation, and vendor selection engagements.',
-  },
-  {
-    type: 'Technology Vendors',
-    desc: 'Competitive intelligence, product positioning strategy, and go-to-market validation — delivered as independent third-party research for sales and marketing teams.',
-  },
-  {
-    type: 'Regulatory & Policy Bodies',
-    desc: 'Independent technology assessments supporting competition policy, AI governance frameworks, and digital infrastructure regulation across major jurisdictions.',
-  },
-];
-
-const methodologySteps = [
-  {
-    num: '01',
-    title: 'Structured Data Collection',
-    desc: 'We gather product data through structured hands-on evaluations, API testing, vendor briefings, and end-user interviews across each coverage category.',
-  },
-  {
-    num: '02',
-    title: 'Proprietary Scoring Framework',
-    desc: 'Our analysts score each vendor across 40+ dimensions — from technical capability and roadmap credibility to pricing transparency and support quality.',
-  },
-  {
-    num: '03',
-    title: 'Expert Review & Calibration',
-    desc: 'Every report undergoes structured peer review by a senior analyst and calibration against our longitudinal vendor performance database before publication.',
-  },
-  {
-    num: '04',
-    title: 'Decision-Ready Delivery',
-    desc: 'Intelligence is distilled into concise, action-oriented formats — from rapid vendor snapshots to full strategic reports with scenario modelling.',
-  },
-];
-
-const testimonials = [
-  {
-    quote: 'Aeris delivered the most thorough competitive intelligence I have seen in 20 years of technology procurement. Their vendor scoring framework is genuinely differentiated.',
-    name: 'Chief Information Officer',
-    firm: 'Fortune 500 Financial Services Firm',
-  },
-  {
-    quote: 'The technical due diligence Aeris provided on our Series B target was exceptional. They surfaced architectural risks our engineers had missed and gave us the confidence to proceed.',
-    name: 'Partner, Technology Practice',
-    firm: 'Leading Growth Equity Firm',
-  },
-  {
-    quote: 'We subscribe to several research firms. Aeris consistently produces the most actionable output — their cybersecurity platform consolidation report reshaped our vendor strategy completely.',
-    name: 'VP of Security Architecture',
-    firm: 'Global Insurance Group',
-  },
-  {
-    quote: 'Aeris Research is the only independent firm I trust to give me an honest assessment of the AI vendor landscape without an agenda. Their independence is their biggest asset.',
-    name: 'Managing Director, Digital Ventures',
-    firm: 'Tier-1 Management Consulting Firm',
-  },
-];
-
-const teamMembers = [
+const analysts = [
   {
     name: 'Priya Nair',
     role: 'Head of AI Research',
-    bio: '14 years covering enterprise AI, MLOps, and foundation model ecosystems across North America and Asia-Pacific.',
-    credentials: ['PhD Computer Science, MIT', 'Ex-Google Brain Researcher'],
-    photo: '/images/team-priya.png',
+    bio: '14 years covering enterprise AI, MLOps, and foundation model ecosystems. PhD Computer Science, MIT.',
+    photo: 'https://picsum.photos/seed/analyst1/400/400',
   },
   {
     name: 'Marcus Osei',
     role: 'Director, Cybersecurity',
-    bio: 'Former CISO and threat intelligence specialist with deep expertise in zero-trust architecture and cloud security platform dynamics.',
-    credentials: ['CISSP, CISM Certified', 'Former CrowdStrike Principal Analyst'],
-    photo: '/images/team-marcus.png',
+    bio: 'Former CISO. Deep expertise in zero-trust architecture, cloud security platform dynamics.',
+    photo: 'https://picsum.photos/seed/analyst2/400/400',
   },
   {
     name: 'Sofia Lindqvist',
     role: 'Senior Analyst, Cloud & SaaS',
-    bio: 'Specialist in multi-cloud strategy, FinOps economics, and vertical SaaS market development across European and North American markets.',
-    credentials: ['AWS Certified Solutions Architect', 'Oxford MSc Technology Policy'],
-    photo: '/images/team-sofia.png',
+    bio: 'Specialist in multi-cloud strategy, FinOps economics, and vertical SaaS market development.',
+    photo: 'https://picsum.photos/seed/analyst3/400/400',
+  },
+  {
+    name: 'David Chen',
+    role: 'Analyst, Fintech & Data',
+    bio: 'Covers embedded finance, real-time payments, modern data stack economics, and analytics tooling.',
+    photo: 'https://picsum.photos/seed/analyst4/400/400',
+  },
+  {
+    name: 'Amara Okafor',
+    role: 'Analyst, Developer Tools',
+    bio: 'Platform engineering specialist, AI-assisted coding tools, DevSecOps, and supply chain security.',
+    photo: 'https://picsum.photos/seed/analyst5/400/400',
   },
 ];
 
 const insights = [
-  { cat: 'AI', title: 'The Hidden Cost of Enterprise AI: Why 64% of Deployments Underperform', date: 'May 2026', slug: 'enterprise-ai-hidden-costs' },
-  { cat: 'Cybersecurity', title: 'Zero Trust Is Not a Product: A Framework for Architecture-First Security', date: 'May 2026', slug: 'zero-trust-architecture-first' },
-  { cat: 'Cloud', title: 'FinOps 3.0: How AI Is Transforming Cloud Cost Management', date: 'April 2026', slug: 'finops-ai-cloud-cost' },
-  { cat: 'SaaS', title: 'The Vertical SaaS Inflection Point: Industry-Specific vs. Horizontal Scale', date: 'April 2026', slug: 'vertical-saas-inflection' },
-  { cat: 'Fintech', title: 'Embedded Finance at Scale: The Middleware Layer Nobody Is Talking About', date: 'March 2026', slug: 'embedded-finance-middleware' },
-  { cat: 'Data', title: 'Lakehouse vs. Warehouse: The 2026 Verdict on the Modern Data Stack', date: 'March 2026', slug: 'lakehouse-warehouse-2026' },
+  { tag: 'AI', title: 'The Hidden Cost of Enterprise AI: Why 64% of Deployments Underperform', date: 'Jun 2026', href: '/insights/enterprise-ai-hidden-costs' },
+  { tag: 'Cybersecurity', title: 'Zero Trust Is Not a Product: A Framework for Architecture-First Security', date: 'May 2026', href: '/insights/zero-trust-framework' },
+  { tag: 'Cloud', title: 'FinOps 3.0: How AI Is Transforming Cloud Cost Management at Scale', date: 'May 2026', href: '/insights/finops-ai-cloud' },
+  { tag: 'SaaS', title: 'The Vertical SaaS Inflection Point: Industry-Specific vs. Horizontal Scale', date: 'Apr 2026', href: '/insights/vertical-saas' },
+  { tag: 'Fintech', title: 'Embedded Finance at Scale: The Middleware Layer Nobody Is Talking About', date: 'Mar 2026', href: '/insights/embedded-finance' },
+  { tag: 'Data', title: 'Lakehouse vs. Warehouse: The 2026 Verdict on the Modern Data Stack', date: 'Mar 2026', href: '/insights/lakehouse-2026' },
 ];
 
-const publications = [
-  { name: 'TechCrunch', quote: 'Aeris Research\'s vendor evaluations have become essential reading for enterprise technology procurement teams navigating an increasingly crowded AI landscape.' },
-  { name: 'The Information', quote: 'The firm\'s independent stance on AI platform comparisons fills a critical gap left by analyst firms with vendor relationships to protect.' },
-  { name: 'MIT Technology Review', quote: 'Aeris brings a level of methodological rigor to technology market analysis that is rarely seen outside of academic research.' },
-  { name: 'Wall Street Journal', quote: 'Their cybersecurity platform consolidation research was cited in congressional testimony on digital infrastructure security standards.' },
-];
-
-const whyPoints = [
-  { title: 'Genuinely Vendor-Neutral', desc: 'No vendor sponsorship, no paid placement, no consulting relationships with the companies we cover. Our scores are ours alone.' },
-  { title: 'Hands-On Product Testing', desc: 'Every product we rate has been tested by our analysts in real enterprise scenarios — not just briefed by vendor marketing teams.' },
-  { title: 'Transparent Scoring', desc: 'Our 40+ dimension scoring framework is fully documented. Clients see every score, weight, and assumption behind our ratings.' },
-  { title: 'Longitudinal Coverage', desc: 'We track vendors over multi-year cycles — so our assessments reflect actual execution, not just announced roadmaps.' },
-  { title: 'Enterprise Practitioner Network', desc: 'Our analyst network includes 300+ active CIOs, CTOs, and security leaders who validate our findings through structured practitioner panels.' },
+const newsletterItems = [
+  'Why OpenAI\'s pricing shift signals a new enterprise AI era',
+  'CrowdStrike Q1 2026 earnings: key analyst takeaways',
+  'Databricks vs. Snowflake: the real battle is now in real-time',
+  'Three cybersecurity vendors to watch in H2 2026',
 ];
 ---
 
 <BaseLayout
-  title="Aeris Research — Independent Technology Intelligence"
-  description="Independent technology research and analysis across AI, cloud, cybersecurity, SaaS, and fintech. Aeris Research delivers vendor-neutral intelligence for enterprise technology buyers, investors, and strategy teams."
+  title="Aeris Research — Independent Tech Intelligence Platform"
+  description="Aeris is the tech intelligence platform for enterprise decision-makers, investors, and operators. Vendor-neutral analysis across AI, cloud, cybersecurity, SaaS, and fintech."
   pageType="homepage"
 >
 
-  <!-- HERO -->
-  <section class="hero hero--homepage" aria-label="Hero section">
-    <div class="hero__bg-overlay"></div>
-    <div class="hero__bg-pattern"></div>
-    <div class="container hero__container">
-      <div class="hero__content">
-        <p class="hero__eyebrow">Est. 2013 · San Francisco · London · Singapore</p>
-        <h1 class="hero__title">Technology Intelligence<br /><em>Without Compromise</em></h1>
-        <p class="hero__subtitle">
-          Aeris Research delivers vendor-neutral technology intelligence across AI, cloud, cybersecurity, SaaS, and fintech. Our 180+ analyst team conducts hands-on product evaluations and primary research across 62 technology sectors — serving enterprise CIOs, institutional investors, and strategy teams who need the unfiltered truth on the technology landscape.
-        </p>
-        <div class="hero__actions">
-          <a href="/research" class="btn btn--teal">Explore Research Library</a>
-          <a href="/contact" class="btn btn--outline">Request a Brief</a>
-          <a href="/sample-report" class="btn btn--outline-light">Download Sample Report</a>
-        </div>
-        <div class="hero__trust">
-          <span>Trusted by 200+ enterprise clients and 50+ institutional investors in 25+ countries</span>
-        </div>
-      </div>
+  <!-- ═══════════════════════════════════════════════
+       HERO — Editorial split
+  ════════════════════════════════════════════════ -->
+  <section class="hero--platform" aria-label="Hero">
+    <div class="container">
+      <div class="hero__split">
 
-      <!-- Live tech data card -->
-      <div class="hero__live-card">
-        <div class="live-card">
-          <div class="live-card__header">
-            <span class="live-card__label">Vendor Tracker</span>
-            <span class="live-card__update">Live ratings</span>
+        <!-- Left: Headline + filters + CTAs -->
+        <div class="hero__left">
+          <div class="hero__kicker">
+            <span class="hero__kicker-dot"></span>
+            Independent · Vendor-Neutral · Hands-On
           </div>
-          <div class="live-card__data">
-            {techData.map(item => (
-              <div class="live-card__item">
-                <span class="live-card__commodity">{item.vendor}</span>
-                <span class="live-card__price">{item.rating}</span>
-                <span class={`live-card__change ${item.positive ? 'live-card__change--up' : 'live-card__change--down'}`}>
-                  {item.change}
-                </span>
-              </div>
+
+          <h1 class="hero__headline">
+            The intelligence layer for <span>tech decisions</span>
+          </h1>
+
+          <p class="hero__sub">
+            Aeris delivers analyst-grade technology research without the conflicts. AI, cloud, cybersecurity, SaaS, fintech — scored against real criteria, tested in real environments.
+          </p>
+
+          <div class="hero__filters" role="group" aria-label="Category filters">
+            {categories.map(cat => (
+              <a
+                href={cat.href}
+                class={`hero__filter-pill${cat.active ? ' hero__filter-pill--active' : ''}`}
+              >
+                {cat.label}
+              </a>
             ))}
           </div>
-          <div class="live-card__footer">
-            <a href="/live-data" class="live-card__link">View full dashboard →</a>
+
+          <div class="hero__actions">
+            <a href="/research" class="btn btn--violet btn--lg">Explore Reports</a>
+            <a href="/contact" class="btn btn--outline btn--lg">Request Brief</a>
           </div>
         </div>
+
+        <!-- Right: Featured article card -->
+        <div class="hero__right">
+          <a href="/research/enterprise-ai-deployment-2026" class="hero__featured-card">
+            <img
+              class="hero__featured-img"
+              src="https://picsum.photos/seed/techresearch/800/500"
+              alt="Enterprise AI Deployment Index 2026"
+              width="800"
+              height="500"
+            />
+            <div class="hero__featured-body">
+              <div class="hero__featured-tag">Featured Report</div>
+              <div class="hero__featured-title">
+                Enterprise AI Deployment Index 2026: Adoption, ROI &amp; Risk
+              </div>
+              <div class="hero__featured-meta">
+                <span>Priya Nair</span>
+                <span>·</span>
+                <span>86 pages</span>
+                <span>·</span>
+                <span>June 2026</span>
+              </div>
+              <div class="hero__featured-read">
+                Read the report
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SIGNAL BAR — Terminal scrolling ticker
+  ════════════════════════════════════════════════ -->
+  <div class="signal-bar" aria-label="Live intelligence signals" role="marquee" aria-live="off">
+    <span class="signal-bar__label" aria-hidden="true">SIGNAL</span>
+    <div class="signal-bar__track">
+      {signalItems.map(item => (<span class="signal-bar__item">{item}</span>))}
+      {signalItems.map(item => (<span class="signal-bar__item">{item}</span>))}
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       LATEST INTELLIGENCE — 2-col editorial grid
+  ════════════════════════════════════════════════ -->
+  <section class="section" aria-labelledby="intel-title">
+    <div class="container">
+      <div class="section__header" style="margin-bottom: 28px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;">
+        <div>
+          <span class="section__label">Latest Intelligence</span>
+          <h2 class="section__title" id="intel-title">Fresh from the platform</h2>
+        </div>
+        <a href="/research" class="btn btn--ghost">
+          All reports
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
 
-      <div class="hero__scroll-indicator" aria-hidden="true"><span></span></div>
+      <div class="intel-grid">
+        <!-- Left: big hero article -->
+        <a href="/research/ai-hidden-costs-2026" class="intel-hero">
+          <img
+            class="intel-hero__img"
+            src="https://picsum.photos/seed/aihero/800/500"
+            alt="AI Hidden Costs"
+            width="800"
+            height="500"
+            loading="lazy"
+          />
+          <div class="intel-hero__body">
+            <span class="intel-hero__tag">Artificial Intelligence</span>
+            <div class="intel-hero__title">
+              The Hidden Cost of Enterprise AI: Why 64% of Deployments Underperform Forecasts
+            </div>
+            <p class="intel-hero__excerpt">
+              Our 2026 benchmarking study across 340 enterprise AI deployments reveals a consistent pattern of post-deployment performance gaps driven by infrastructure underestimation, data quality debt, and misaligned procurement assumptions.
+            </p>
+            <div class="intel-hero__meta">Priya Nair · June 2026 · 12 min read</div>
+          </div>
+        </a>
+
+        <!-- Right: stack of 3 -->
+        <div class="intel-stack">
+          {latestSmall.map(item => (
+            <a href={item.href} class="intel-item">
+              <img
+                class="intel-item__img"
+                src={item.img}
+                alt={item.title}
+                width="88"
+                height="64"
+                loading="lazy"
+              />
+              <div class="intel-item__body">
+                <span class="intel-item__tag">{item.tag}</span>
+                <div class="intel-item__title">{item.title}</div>
+                <div class="intel-item__meta">{item.date}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- DATA TICKER -->
-  <section class="data-ticker" aria-label="Technology intelligence ticker">
-    <div class="ticker-content">
-      {tickerHeadlines.map(h => (<span class="ticker-item">{h}</span>))}
-      {tickerHeadlines.map(h => (<span class="ticker-item">{h}</span>))}
-    </div>
-  </section>
 
-  <!-- STATS BAR -->
-  <section class="stats-bar" aria-label="Key statistics">
+  <!-- ═══════════════════════════════════════════════
+       TOPIC SECTORS — Horizontal pill selector
+  ════════════════════════════════════════════════ -->
+  <section class="section section--soft" aria-labelledby="sectors-title">
     <div class="container">
-      <div class="stats-bar__grid">
+      <div class="section__header" style="margin-bottom: 28px;">
+        <span class="section__label">Coverage Areas</span>
+        <h2 class="section__title" id="sectors-title">8 technology sectors, zero conflicts</h2>
+        <p class="section__subtitle">Each sector has dedicated analysts, a proprietary vendor database, and 5+ years of longitudinal tracking.</p>
+      </div>
+
+      <!-- Pills -->
+      <nav class="sectors-tabs" aria-label="Technology sectors">
+        {sectors.map((s, i) => (
+          <a href={s.href} class={`sector-tab${i === 0 ? ' sector-tab--active' : ''}`}>
+            {s.icon} {s.label}
+            <span class="sector-tab__count">{s.count}</span>
+          </a>
+        ))}
+      </nav>
+
+      <!-- Report cards grid -->
+      <div class="sectors-content">
+        <a href="/research?cat=ai" class="sector-report">
+          <div class="sector-report__icon">🤖</div>
+          <div class="sector-report__title">Enterprise AI Deployment Index 2026</div>
+          <div class="sector-report__count">94 reports in AI & ML</div>
+        </a>
+        <a href="/research?cat=ai" class="sector-report">
+          <div class="sector-report__icon">⚡</div>
+          <div class="sector-report__title">Foundation Model Comparison: GPT-4o vs. Claude 4 vs. Gemini 2.0</div>
+          <div class="sector-report__count">86 pages · June 2026</div>
+        </a>
+        <a href="/research?cat=ai" class="sector-report">
+          <div class="sector-report__icon">🧠</div>
+          <div class="sector-report__title">MLOps Platform Vendor Landscape 2026</div>
+          <div class="sector-report__count">62 pages · May 2026</div>
+        </a>
+        <a href="/research?cat=ai" class="sector-report">
+          <div class="sector-report__icon">📡</div>
+          <div class="sector-report__title">Edge AI: Deployment Economics and Emerging Vendor Stack</div>
+          <div class="sector-report__count">44 pages · April 2026</div>
+        </a>
+        <a href="/research?cat=ai" class="sector-report">
+          <div class="sector-report__icon">🔧</div>
+          <div class="sector-report__title">AI-Assisted Coding: GitHub Copilot, Cursor, Windsurf Compared</div>
+          <div class="sector-report__count">38 pages · April 2026</div>
+        </a>
+        <a href="/research?cat=ai" class="sector-report">
+          <div class="sector-report__icon">🏗️</div>
+          <div class="sector-report__title">Agentic AI Infrastructure: The Emerging Orchestration Layer</div>
+          <div class="sector-report__count">52 pages · March 2026</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FEATURED REPORT — Dark spotlight
+  ════════════════════════════════════════════════ -->
+  <section class="section--report-spotlight" aria-labelledby="spotlight-title">
+    <div class="container">
+      <div class="report-spotlight">
+
+        <!-- Left: text -->
+        <div>
+          <div class="report-spotlight__label">Flagship Report</div>
+          <h2 class="report-spotlight__title" id="spotlight-title">
+            Cybersecurity Platform Consolidation: The 2026 Landscape
+          </h2>
+          <p class="report-spotlight__desc">
+            The security vendor market is converging. Our 72-page analysis maps 140+ vendors across endpoint, cloud, identity, and SIEM categories — scoring consolidation pressure, platform maturity, and the strategic implications for enterprise security buyers navigating a rapidly shrinking field.
+          </p>
+          <div class="report-spotlight__meta">
+            <div class="report-meta-item">
+              <span class="report-meta-item__label">Author</span>
+              <span class="report-meta-item__value">Marcus Osei</span>
+            </div>
+            <div class="report-meta-item">
+              <span class="report-meta-item__label">Pages</span>
+              <span class="report-meta-item__value">72</span>
+            </div>
+            <div class="report-meta-item">
+              <span class="report-meta-item__label">Vendors scored</span>
+              <span class="report-meta-item__value">140+</span>
+            </div>
+            <div class="report-meta-item">
+              <span class="report-meta-item__label">Published</span>
+              <span class="report-meta-item__value">May 2026</span>
+            </div>
+          </div>
+          <div class="report-spotlight__actions">
+            <a href="/research/cybersecurity-consolidation-2026" class="btn btn--violet btn--lg">Download Sample</a>
+            <a href="/contact" class="btn btn--outline-white btn--lg">Get Full Access</a>
+          </div>
+        </div>
+
+        <!-- Right: CSS-generated mockup card -->
+        <div class="report-mockup" aria-hidden="true">
+          <div class="report-mockup__badge">Aeris Research · 2026</div>
+          <div class="report-mockup__title">Cybersecurity Platform Consolidation: The 2026 Landscape</div>
+          <div class="report-mockup__divider"></div>
+          <div class="report-mockup__stats">
+            <div>
+              <div class="report-mockup__stat">
+                <span class="report-mockup__stat-label">Endpoint Security</span>
+                <span class="report-mockup__stat-val">82%</span>
+              </div>
+              <div class="report-mockup__bar-wrap">
+                <div class="report-mockup__bar" style="width: 82%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="report-mockup__stat">
+                <span class="report-mockup__stat-label">Cloud Security</span>
+                <span class="report-mockup__stat-val">71%</span>
+              </div>
+              <div class="report-mockup__bar-wrap">
+                <div class="report-mockup__bar" style="width: 71%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="report-mockup__stat">
+                <span class="report-mockup__stat-label">Identity & Access</span>
+                <span class="report-mockup__stat-val">68%</span>
+              </div>
+              <div class="report-mockup__bar-wrap">
+                <div class="report-mockup__bar" style="width: 68%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="report-mockup__stat">
+                <span class="report-mockup__stat-label">SIEM / SOAR</span>
+                <span class="report-mockup__stat-val">55%</span>
+              </div>
+              <div class="report-mockup__bar-wrap">
+                <div class="report-mockup__bar" style="width: 55%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="report-mockup__footer">
+            <span class="report-mockup__pages">72 pages · 140+ vendors</span>
+            <span class="report-mockup__lock">🔒 Subscriber access</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       STATS — 4 big numbers
+  ════════════════════════════════════════════════ -->
+  <section class="section" aria-label="Platform statistics">
+    <div class="container">
+      <div class="stats-row">
         {stats.map(stat => (
-          <div class="stats-bar__item">
-            <span class="stats-bar__value">{stat.value}</span>
-            <span class="stats-bar__label">{stat.label}</span>
+          <div class="stats-row__item">
+            <div class="stats-row__num">{stat.num}</div>
+            <div class="stats-row__label">{stat.label}</div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- INTRO -->
-  <section class="section section--intro" aria-labelledby="intro-title">
-    <div class="container">
-      <div class="intro__wrapper">
-        <div class="intro__main">
-          <p class="section__eyebrow">What Sets Us Apart</p>
-          <h2 class="section__title" id="intro-title">Research Built for the Technology Decisions That Matter</h2>
 
-          <div class="intro__text-block">
-            <p class="intro__para--lead">
-              Aeris Research was founded on a single conviction: technology buyers, investors, and strategists deserve research that is genuinely independent — free from vendor sponsorships, paid placements, and the conflicts of interest that compromise most technology analyst firms.
-            </p>
-            <p class="intro__para">
-              Over twelve years, we have built one of the most trusted independent technology research franchises in the market. Our analyst teams combine deep technical expertise with enterprise practitioner networks, delivering assessments that go beyond marketing claims to test what technology actually does — at enterprise scale, in production environments, under real-world conditions.
-            </p>
-            <p class="intro__para">
-              Our clients — CIOs shortlisting enterprise software, VCs evaluating B2B SaaS investments, PE firms conducting technical due diligence, and strategy teams benchmarking digital transformation progress — rely on Aeris for intelligence that is accurate, actionable, and completely conflict-free.
-            </p>
-            <blockquote class="intro__pullquote">
-              <span class="intro__quote-mark">"</span>
-              <p>Aeris Research is the only firm I have encountered that combines the technical depth of an engineering team with the analytical rigour of a tier-one research house. Their AI landscape report saved us from a catastrophic vendor decision.</p>
-              <span class="intro__quote-attrib">— CTO, Fortune 200 Technology Company</span>
-            </blockquote>
-            <a href="/about" class="intro__link">Learn more about Aeris Research →</a>
-          </div>
-        </div>
-
-        <div class="intro__sidebar">
-          <div class="intro__promise-box">
-            <h3 class="intro__promise-title">Our Promise</h3>
-            <ul class="intro__promise-list">
-              <li><span class="promise-check">✓</span> Zero vendor sponsorship</li>
-              <li><span class="promise-check">✓</span> Hands-on product testing</li>
-              <li><span class="promise-check">✓</span> Transparent scoring methodology</li>
-              <li><span class="promise-check">✓</span> Enterprise practitioner validation</li>
-              <li><span class="promise-check">✓</span> Longitudinal vendor tracking</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTOR EXPERTISE GRID -->
-  <section class="section section--sectors section--bg-soft" aria-labelledby="sectors-title">
-    <div class="container">
-      <div class="section__header section__header--center">
-        <p class="section__eyebrow">Deep Coverage</p>
-        <h2 class="section__title section__title--center" id="sectors-title">8 Technology Sectors</h2>
-        <p class="section__subtitle">Each sector represents 5+ years of dedicated analyst coverage, proprietary vendor databases, and structured practitioner research.</p>
-      </div>
-      <div class="sectors-grid">
-        {sectors.map(sector => (
-          <div class="sector-card">
-            <div class="sector-card__icon">{sector.icon}</div>
-            <h3 class="sector-card__title">{sector.title}</h3>
-            <p class="sector-card__desc">{sector.desc}</p>
-            <div class="sector-card__meta">
-              <span class="sector-card__reports">{sector.reports} reports published</span>
-            </div>
-            <a href={`/sectors/${sector.id}`} class="sector-card__link">Explore sector →</a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURED REPORTS -->
-  <section class="section section--featured-reports" aria-labelledby="featured-title">
-    <div class="container">
-      <div class="section__header section__header--center">
-        <p class="section__eyebrow">From the Research Library</p>
-        <h2 class="section__title section__title--center" id="featured-title">Flagship Reports</h2>
-        <p class="section__subtitle">Select recent publications from our enterprise technology research program.</p>
-      </div>
-      <div class="featured-reports-grid">
-        {featuredReports.map(report => (
-          <div class="report-card">
-            <div class="report-card__cover">
-              <div class="report-card__category-tag">{report.category}</div>
-              <div class="report-card__title">{report.title}</div>
-              <div class="report-card__pages">{report.pages} pages</div>
-            </div>
-            <div class="report-card__footer">
-              <a href={`/research/${report.slug}`} class="btn btn--small btn--teal">Download Sample</a>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div class="section__cta-center">
-        <a href="/research" class="btn btn--dark">Browse Full Research Library →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- LATEST RESEARCH -->
+  <!-- ═══════════════════════════════════════════════
+       LATEST RESEARCH (from CMS)
+  ════════════════════════════════════════════════ -->
   {posts.length > 0 && (
-    <section class="section section--latest-intelligence section--bg-soft" aria-labelledby="latest-title">
+    <section class="section section--soft" aria-labelledby="cms-posts-title">
       <div class="container">
-        <div class="section__header section__header--center">
-          <p class="section__eyebrow">Fresh Intelligence</p>
-          <h2 class="section__title section__title--center" id="latest-title">Latest Research</h2>
-          <p class="section__subtitle">Our most recent publications — independent technology analysis across AI, cloud, security, and enterprise software.</p>
+        <div class="section__header" style="margin-bottom: 28px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;">
+          <div>
+            <span class="section__label">From the Platform</span>
+            <h2 class="section__title" id="cms-posts-title">Latest published research</h2>
+          </div>
+          <a href="/research" class="btn btn--ghost">
+            View all
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
         <div class="article-grid">
           {posts.map(post => (
@@ -468,483 +501,187 @@ const whyPoints = [
             />
           ))}
         </div>
-        <div class="section__cta-center" style="margin-top: 40px;">
-          <a href="/research" class="btn btn--dark">View All Research →</a>
-        </div>
       </div>
     </section>
   )}
 
-  <!-- SERVICES GRID -->
-  <section class="section section--services" aria-labelledby="services-title">
-    <div class="container">
-      <div class="section__header section__header--center">
-        <p class="section__eyebrow">Our Capabilities</p>
-        <h2 class="section__title section__title--center" id="services-title">Six Integrated Service Lines</h2>
-        <p class="section__subtitle">Comprehensive technology intelligence covering the full research lifecycle — from hands-on product testing to board-level strategic delivery.</p>
-      </div>
-      <div class="services-grid">
-        {services.map(svc => (
-          <div class="service-card">
-            <div class="service-card__icon" set:html={svc.icon} />
-            <h3 class="service-card__title">{svc.title}</h3>
-            <p class="service-card__desc">{svc.desc}</p>
-            <a href="/services" class="service-card__link">Learn more →</a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
-  <!-- CLIENT TYPES -->
-  <section class="section section--client-types section--bg-soft" aria-labelledby="clients-title">
+  <!-- ═══════════════════════════════════════════════
+       WHY INDEPENDENT
+  ════════════════════════════════════════════════ -->
+  <section class="section" aria-labelledby="why-title">
     <div class="container">
-      <div class="section__header section__header--center">
-        <p class="section__eyebrow">Who We Serve</p>
-        <h2 class="section__title section__title--center" id="clients-title">Built for Technology Decision-Makers</h2>
-        <p class="section__subtitle">Aeris serves six primary client categories, each with distinct technology intelligence requirements.</p>
-      </div>
-      <div class="client-types-grid">
-        {clientTypes.map(client => (
-          <div class="client-card">
-            <h3 class="client-card__type">{client.type}</h3>
-            <p class="client-card__desc">{client.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY AERIS (Dark) -->
-  <section class="section section--dark section--why" aria-labelledby="why-title">
-    <div class="container">
-      <div class="why__grid">
-        <div class="why__text">
-          <p class="section__eyebrow section__eyebrow--teal">Our Principles</p>
-          <h2 class="section__title section__title--light" id="why-title">The Aeris Standard</h2>
-          <div class="why__points">
-            {whyPoints.map(point => (
-              <div class="why__point">
-                <div class="why__point-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <div>
-                  <h3>{point.title}</h3>
-                  <p>{point.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+      <div class="why-independent">
+        <!-- Left: big statement -->
+        <div class="why__statement">
+          <span class="section__label">Our Principles</span>
+          <h2 class="why__statement-quote" id="why-title">
+            Research that earns trust by <strong>having nothing to hide</strong>
+          </h2>
+          <p class="why__statement-sub">
+            Most technology analyst firms have vendor relationships that compromise their ratings. We don't. Our independence isn't a marketing claim — it's enforced by structure. No vendor pays us. No placement is for sale.
+          </p>
         </div>
-        <div class="why__visual">
-          <img src="/images/why-aeris.png" alt="Aeris analyst reviewing technology research" loading="lazy" class="why__image" />
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- METHODOLOGY PREVIEW -->
-  <section class="section section--bg-soft" aria-labelledby="method-title">
-    <div class="container">
-      <div class="section__header section__header--center">
-        <p class="section__eyebrow">How We Work</p>
-        <h2 class="section__title section__title--center" id="method-title">A Rigorous Four-Stage Process</h2>
-        <p class="section__subtitle">Every Aeris research deliverable passes through four structured stages — ensuring our ratings reflect reality, not vendor marketing.</p>
-      </div>
-      <div class="methodology-steps">
-        {methodologySteps.map((step, i) => (
-          <div class="method-step">
-            <div class="method-step__num">{step.num}</div>
-            <div class="method-step__content">
-              <h3 class="method-step__title">{step.title}</h3>
-              <p class="method-step__desc">{step.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div class="section__cta-center">
-        <a href="/methodology" class="btn btn--dark">Read Full Methodology →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="section section--dark section--testimonials" aria-labelledby="testimonials-title">
-    <div class="container">
-      <div class="section__header section__header--center">
-        <p class="section__eyebrow section__eyebrow--teal">Client Perspectives</p>
-        <h2 class="section__title section__title--light section__title--center" id="testimonials-title">What Our Clients Say</h2>
-      </div>
-      <div class="testimonials-grid">
-        {testimonials.map(t => (
-          <div class="testimonial-card">
-            <div class="testimonial-card__quote-mark">"</div>
-            <blockquote class="testimonial-card__text">{t.quote}</blockquote>
-            <div class="testimonial-card__attr">
-              <span class="testimonial-card__name">{t.name}</span>
-              <span class="testimonial-card__firm">{t.firm}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM TEASER -->
-  <section class="section section--team section--bg-soft" aria-labelledby="team-title">
-    <div class="container">
-      <div class="section__header section__header--flex">
-        <div>
-          <p class="section__eyebrow">Our Analysts</p>
-          <h2 class="section__title" id="team-title">Senior Research Team</h2>
-        </div>
-        <a href="/team" class="section__view-all">Meet the full team →</a>
-      </div>
-      <div class="team-grid">
-        {teamMembers.map(member => (
-          <div class="team-card">
-            <div class="team-card__photo-wrap">
-              <img src={member.photo} alt={member.name} loading="lazy" class="team-card__photo" />
-            </div>
-            <div class="team-card__body">
-              <h3 class="team-card__name">{member.name}</h3>
-              <p class="team-card__role">{member.role}</p>
-              <p class="team-card__bio">{member.bio}</p>
-              <div class="team-card__credentials">
-                {member.credentials.map(cred => (
-                  <span class="credential-chip">{cred}</span>
-                ))}
+        <!-- Right: bullet list -->
+        <div class="why__bullets">
+          {whyPoints.map((point, i) => (
+            <div class="why-bullet">
+              <span class="why-bullet__num">0{i + 1}</span>
+              <div>
+                <div class="why-bullet__title">{point.title}</div>
+                <p class="why-bullet__desc">{point.desc}</p>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- PRESS & CITATIONS -->
-  <section class="section section--press section--dark" aria-labelledby="press-title">
-    <div class="container">
-      <div class="section__header section__header--center">
-        <p class="section__eyebrow section__eyebrow--teal">Research Impact</p>
-        <h2 class="section__title section__title--light section__title--center" id="press-title">Cited by the Best</h2>
-        <p class="section__subtitle section__subtitle--light">Aeris analysis shapes technology conversations at the highest levels.</p>
-      </div>
-      <div class="publications-grid">
-        {publications.map(pub => (
-          <div class="publication-card">
-            <div class="publication-card__name">{pub.name}</div>
-            <blockquote class="publication-card__quote">"{pub.quote}"</blockquote>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- INSIGHTS FEED -->
-  <section class="section section--insights" aria-labelledby="insights-title">
-    <div class="container">
-      <div class="section__header section__header--flex">
-        <div>
-          <p class="section__eyebrow">Market Commentary</p>
-          <h2 class="section__title" id="insights-title">Recent Insights</h2>
+          ))}
         </div>
-        <a href="/insights" class="section__view-all">All insights →</a>
       </div>
-      <div class="insights-list">
-        {insights.map(insight => (
-          <a href={`/insights/${insight.slug}`} class="insight-item">
-            <span class="insight-item__cat">{insight.cat}</span>
-            <span class="insight-item__title">{insight.title}</span>
-            <span class="insight-item__date">{insight.date}</span>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       ANALYST TEAM — Horizontal strip
+  ════════════════════════════════════════════════ -->
+  <section class="section section--soft" aria-labelledby="analysts-title">
+    <div class="container">
+      <div class="section__header" style="margin-bottom: 28px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;">
+        <div>
+          <span class="section__label">The Team</span>
+          <h2 class="section__title" id="analysts-title">Analysts who've worked in the tech they cover</h2>
+        </div>
+        <a href="/team" class="btn btn--ghost">
+          Meet all analysts
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="analyst-strip-wrap">
+        <div class="analyst-strip">
+          {analysts.map(analyst => (
+            <a href="/team" class="analyst-card">
+              <img
+                class="analyst-card__photo"
+                src={analyst.photo}
+                alt={analyst.name}
+                width="220"
+                height="160"
+                loading="lazy"
+              />
+              <div class="analyst-card__body">
+                <div class="analyst-card__name">{analyst.name}</div>
+                <div class="analyst-card__role">{analyst.role}</div>
+                <p class="analyst-card__bio">{analyst.bio}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       INSIGHTS FEED
+  ════════════════════════════════════════════════ -->
+  <section class="section" aria-labelledby="insights-title">
+    <div class="container">
+      <div class="section__header" style="margin-bottom: 28px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;">
+        <div>
+          <span class="section__label">Market Commentary</span>
+          <h2 class="section__title" id="insights-title">Recent insights</h2>
+        </div>
+        <a href="/insights" class="btn btn--ghost">
+          All insights
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="insights-feed">
+        {insights.map(item => (
+          <a href={item.href} class="insights-feed__item">
+            <span class="insights-feed__tag">{item.tag}</span>
+            <span class="insights-feed__title">{item.title}</span>
+            <span class="insights-feed__date">{item.date}</span>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- NEWSLETTER -->
-  <section class="section section--newsletter section--bg-soft" aria-labelledby="newsletter-title">
+
+  <!-- ═══════════════════════════════════════════════
+       PRESS CITATIONS — minimal bar
+  ════════════════════════════════════════════════ -->
+  <section class="section" aria-label="Featured in" style="padding: 40px 0;">
     <div class="container">
-      <div class="newsletter-box">
-        <div class="newsletter-box__content">
-          <h2 class="newsletter-box__title" id="newsletter-title">Weekly Tech Intelligence Briefing</h2>
-          <p class="newsletter-box__subtitle">The signal through the noise — in 5 minutes every Friday</p>
-          <p class="newsletter-box__desc">Our analysts synthesize the week's most significant technology developments, product launches, M&A moves, and regulatory shifts. Tailored to your sectors of interest — AI, cloud, security, SaaS, or fintech.</p>
-          <form class="newsletter-form" method="POST" action="/api/newsletter-subscribe">
-            <input type="email" name="email" placeholder="Your work email address" required class="newsletter-form__input" />
-            <button type="submit" class="btn btn--teal btn--lg">Subscribe</button>
+      <div class="press-strip">
+        <span class="press-strip__label">As cited in</span>
+        <span class="press-strip__item">TechCrunch</span>
+        <span class="press-strip__item">The Information</span>
+        <span class="press-strip__item">MIT Technology Review</span>
+        <span class="press-strip__item">Wall Street Journal</span>
+        <span class="press-strip__item">Wired</span>
+        <span class="press-strip__item">Ars Technica</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       NEWSLETTER — Minimal full-width dark
+  ════════════════════════════════════════════════ -->
+  <section class="section--newsletter" aria-labelledby="newsletter-title">
+    <div class="container">
+      <div class="newsletter-platform">
+
+        <!-- Left: pitch + form -->
+        <div>
+          <h2 class="newsletter__title" id="newsletter-title">
+            The <span>Signal</span> — weekly tech intelligence in 5 minutes
+          </h2>
+          <p class="newsletter__sub">
+            Every Friday, our analysts synthesize the week's most significant developments in AI, cloud, cybersecurity, and SaaS. No noise. No sponsored content. Just signal.
+          </p>
+
+          <form class="newsletter__form" method="POST" action="/api/newsletter-subscribe" style="margin-top: 28px;">
+            <input
+              type="email"
+              name="email"
+              placeholder="your@company.com"
+              required
+              class="newsletter__input"
+              autocomplete="email"
+            />
+            <button type="submit" class="newsletter__submit">Subscribe free</button>
           </form>
-          <div class="newsletter-stats">
-            <span class="newsletter-stats__item">6,800+ subscribers</span>
-            <span class="newsletter-stats__sep">·</span>
-            <span class="newsletter-stats__item">88% open rate</span>
-            <span class="newsletter-stats__sep">·</span>
-            <span class="newsletter-stats__item">5-minute read</span>
+
+          <div class="newsletter__proof">
+            <span class="newsletter__proof-item">6,800+ subscribers</span>
+            <span class="newsletter__proof-item">88% open rate</span>
+            <span class="newsletter__proof-item">Free forever</span>
+            <span class="newsletter__proof-item">Unsubscribe anytime</span>
           </div>
         </div>
-        <div class="newsletter-box__visual" aria-hidden="true">
-          <div class="newsletter-visual"></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- CTA BANNER -->
-  <section class="section section--cta-banner section--dark" aria-labelledby="cta-title">
-    <div class="container">
-      <div class="cta-banner">
-        <div class="cta-banner__text">
-          <p class="section__eyebrow section__eyebrow--teal">Work With Us</p>
-          <h2 class="cta-banner__title" id="cta-title">Ready to Cut Through the Vendor Noise?</h2>
-          <p class="cta-banner__sub">Our team responds within one business day. We work with enterprise technology buyers, institutional investors, PE firms, and strategy teams across 25+ countries.</p>
+        <!-- Right: issue preview -->
+        <div class="newsletter__preview">
+          <div class="newsletter__preview-header">
+            <span class="newsletter__preview-title">The Signal — Issue #124</span>
+            <span class="newsletter__preview-date">Jun 6, 2026</span>
+          </div>
+          <div class="newsletter__preview-items">
+            {newsletterItems.map(item => (
+              <div class="newsletter__preview-item">
+                <div class="newsletter__preview-dot"></div>
+                <p class="newsletter__preview-text">{item}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div class="cta-banner__actions">
-          <a href="/contact" class="btn btn--teal btn--lg">Request a Research Brief</a>
-          <a href="/research" class="btn btn--outline-light btn--lg">Browse Research Library</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- LOGOS BAR -->
-  <section class="section section--logos" aria-label="As featured in">
-    <div class="container">
-      <p class="logos-bar__label">As cited and featured in</p>
-      <div class="logos-bar">
-        <span class="logos-bar__item">TechCrunch</span>
-        <span class="logos-bar__sep" aria-hidden="true">·</span>
-        <span class="logos-bar__item">The Information</span>
-        <span class="logos-bar__sep" aria-hidden="true">·</span>
-        <span class="logos-bar__item">MIT Technology Review</span>
-        <span class="logos-bar__sep" aria-hidden="true">·</span>
-        <span class="logos-bar__item">Wall Street Journal</span>
-        <span class="logos-bar__sep" aria-hidden="true">·</span>
-        <span class="logos-bar__item">Wired</span>
-        <span class="logos-bar__sep" aria-hidden="true">·</span>
-        <span class="logos-bar__item">Ars Technica</span>
-        <span class="logos-bar__sep" aria-hidden="true">·</span>
-        <span class="logos-bar__item">Gartner</span>
       </div>
     </div>
   </section>
 
 </BaseLayout>
-
-<style>
-  /* Hero live card */
-  .hero__container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    min-height: 680px;
-    padding: 8rem 0;
-  }
-
-  .hero__live-card { position: relative; z-index: 4; }
-
-  .live-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(13, 148, 136, 0.25);
-    border-radius: 12px;
-    padding: 1.5rem;
-    max-width: 320px;
-  }
-
-  .live-card__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
-  .live-card__label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--teal-light);
-  }
-
-  .live-card__update { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
-
-  .live-card__data {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .live-card__item {
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 0.75rem;
-    align-items: center;
-  }
-
-  .live-card__commodity { font-size: 0.875rem; font-weight: 600; color: white; }
-  .live-card__price { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.8); }
-  .live-card__change { font-size: 0.875rem; font-weight: 600; }
-  .live-card__change--up { color: #34d399; }
-  .live-card__change--down { color: #f87171; }
-
-  .live-card__footer {
-    padding-top: 1rem;
-    border-top: 1px solid rgba(13, 148, 136, 0.2);
-  }
-
-  .live-card__link {
-    font-size: 0.875rem;
-    color: var(--teal-light);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .live-card__link:hover { color: #5eead4; }
-
-  /* Intro section */
-  .section--intro {
-    background: linear-gradient(135deg, #f8fafc 0%, #f0fdfa 100%);
-  }
-
-  .intro__wrapper {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 3rem;
-    margin-bottom: 3rem;
-  }
-
-  .intro__para--lead {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    color: var(--dark);
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-  }
-
-  .intro__para {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-  }
-
-  .intro__pullquote {
-    background: white;
-    border-left: 4px solid var(--teal);
-    padding: 2rem;
-    margin: 2.5rem 0;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--dark);
-    font-style: italic;
-  }
-
-  .intro__quote-mark {
-    font-size: 3rem;
-    color: var(--teal);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-    font-family: 'DM Serif Display', serif;
-  }
-
-  .intro__quote-attrib {
-    display: block;
-    font-size: 0.875rem;
-    font-style: normal;
-    color: var(--text-secondary);
-    margin-top: 1rem;
-  }
-
-  .intro__link {
-    display: inline-block;
-    color: var(--dark);
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.2s;
-    margin-top: 1rem;
-  }
-
-  .intro__link:hover { color: var(--teal); }
-
-  .intro__sidebar {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 2rem;
-    height: fit-content;
-    position: sticky;
-    top: 2rem;
-  }
-
-  .intro__promise-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.4rem;
-    color: var(--dark);
-    margin-bottom: 1.5rem;
-  }
-
-  .intro__promise-list { list-style: none; padding: 0; margin: 0; }
-
-  .intro__promise-list li {
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-  }
-
-  .promise-check { color: var(--teal); font-weight: 700; flex-shrink: 0; }
-
-  /* Publications grid */
-  .publications-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  .publication-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(13, 148, 136, 0.15);
-    border-radius: 8px;
-    padding: 2rem;
-  }
-
-  .publication-card__name {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--teal-light);
-    margin-bottom: 1.5rem;
-    font-family: 'DM Serif Display', serif;
-  }
-
-  .publication-card__quote {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.72);
-    font-style: italic;
-  }
-
-  @media (max-width: 1024px) {
-    .hero__container {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      padding: 4rem 0;
-      min-height: auto;
-    }
-
-    .intro__wrapper { grid-template-columns: 1fr; }
-    .intro__sidebar { position: static; }
-  }
-
-  @media (max-width: 768px) {
-    .hero__container { padding: 4rem 0; }
-  }
-</style>

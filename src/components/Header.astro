@@ -1,0 +1,135 @@
+---
+// Header.astro — Aeris Research nav
+const navItems = [
+  {
+    label: 'Research',
+    href: '/research',
+    children: [
+      { label: 'All Reports', href: '/research' },
+      { label: 'Artificial Intelligence', href: '/research?cat=ai' },
+      { label: 'Cybersecurity', href: '/research?cat=cybersecurity' },
+      { label: 'Cloud & Infrastructure', href: '/research?cat=cloud' },
+      { label: 'SaaS & Enterprise', href: '/research?cat=saas' },
+      { label: 'Fintech', href: '/research?cat=fintech' },
+    ],
+  },
+  { label: 'Services', href: '/services' },
+  { label: 'Insights', href: '/insights' },
+  { label: 'Methodology', href: '/methodology' },
+  { label: 'Team', href: '/team' },
+  {
+    label: 'Company',
+    href: '/about',
+    children: [
+      { label: 'About Aeris', href: '/about' },
+      { label: 'Coverage Areas', href: '/coverage' },
+      { label: 'Press & Media', href: '/press' },
+      { label: 'Our Analysts', href: '/team' },
+      { label: 'Methodology', href: '/methodology' },
+      { label: 'Contact Us', href: '/contact' },
+    ],
+  },
+];
+const { pathname } = Astro.url;
+---
+
+<header class="site-header" role="banner">
+  <div class="site-header__topbar">
+    <div class="site-header__topbar-inner">
+      <span class="site-header__topbar-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 014 1.18 2 2 0 016 3.18v3a2 2 0 01-1.45 1.93l-.27.27a16 16 0 006.29 6.29l.27-.27A2 2 0 0122 16.92z"/></svg>
+        +1 (415) 555-0174
+      </span>
+      <span class="site-header__topbar-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        research@aerisresearch.com
+      </span>
+      <div class="site-header__topbar-social">
+        <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://twitter.com" aria-label="Twitter / X" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-header__main">
+    <div class="site-header__inner">
+      <a href="/" class="site-header__logo" aria-label="Aeris Research home">
+        <div class="site-header__logo-wordmark">
+          <span class="site-header__logo-name">AERIS</span>
+          <span class="site-header__logo-sub">RESEARCH</span>
+        </div>
+      </a>
+
+      <nav class="site-header__nav" id="main-nav" role="navigation" aria-label="Main navigation">
+        {navItems.map(item => (
+          <div class={`nav-item${item.children ? ' nav-item--has-dropdown' : ''}`}>
+            <a
+              href={item.href}
+              class="nav-item__link"
+              aria-current={pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href)) ? 'page' : undefined}
+              aria-haspopup={item.children ? 'true' : undefined}
+            >
+              {item.label}
+              {item.children && (
+                <svg class="nav-item__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              )}
+            </a>
+            {item.children && (
+              <div class="nav-dropdown" role="menu">
+                {item.children.map(child => (
+                  <a href={child.href} class="nav-dropdown__item" role="menuitem">{child.label}</a>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </nav>
+
+      <div class="site-header__actions">
+        <a href="/contact" class="site-header__cta">Request a Brief</a>
+        <button
+          class="site-header__toggle"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+          aria-controls="main-nav"
+          id="nav-toggle"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('main-nav');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = nav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('nav-open', isOpen);
+  });
+
+  nav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav?.classList.contains('is-open')) {
+      nav.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    }
+  });
+</script>

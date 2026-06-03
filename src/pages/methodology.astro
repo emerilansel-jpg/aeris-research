@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Research Methodology — Aeris Research" description="How Aeris Research conducts independent technology evaluations: structured data collection, proprietary scoring, expert review, and decision-ready delivery.">
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero__content">
+        <p class="section__eyebrow">How We Work</p>
+        <h1 class="page-hero__title">Our Methodology</h1>
+        <p class="page-hero__sub">A four-stage research process engineered to deliver accurate, actionable, and completely vendor-neutral technology intelligence.</p>
+      </div>
+    </div>
+  </div>
+  <div class="about-page">
+    {[
+      { num:'01', title:'Structured Data Collection', body:'Our analysts gather product data through structured hands-on evaluations, API testing, vendor briefings, end-user interviews, and enterprise practitioner panels. We never rely solely on vendor-provided information — all claims are independently tested.' },
+      { num:'02', title:'Proprietary Scoring Framework', body:'Every vendor and product is scored across 40+ dimensions spanning technical capability, roadmap credibility, pricing transparency, support quality, security posture, and enterprise readiness. All dimension weights are documented and available to clients.' },
+      { num:'03', title:'Expert Review & Calibration', body:'Every report undergoes structured peer review by a senior analyst and calibration against our longitudinal vendor performance database. Historical accuracy of assessments is tracked and published annually.' },
+      { num:'04', title:'Decision-Ready Delivery', body:'Intelligence is distilled into concise, action-oriented formats — from rapid vendor snapshots (2-4 pages) to full strategic reports with scenario modelling (50-90 pages). All formats are structured for executive consumption, not analyst gratification.' },
+    ].map(step => (
+      <div class="about-section">
+        <h2 class="about-section__title">{step.num}. {step.title}</h2>
+        <div class="about-section__body"><p>{step.body}</p></div>
+      </div>
+    ))}
+    <div class="about-section">
+      <h2 class="about-section__title">Independence Policy</h2>
+      <div class="about-section__body">
+        <p>Aeris Research does not accept vendor sponsorship, paid placement, or consulting fees from companies it covers in research. Analysts are prohibited from holding financial positions in covered companies. Our complete independence policy is available on request.</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

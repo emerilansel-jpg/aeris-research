@@ -1,0 +1,33 @@
+---
+// AuthorBox.astro — Author attribution block
+interface Props {
+  author: string;
+}
+
+const { author } = Astro.props;
+
+const [authorName, authorTitle = 'Senior Research Analyst'] = author.split(',').map((s: string) => s.trim());
+
+const initials = authorName
+  .split(' ')
+  .map((n: string) => n[0])
+  .slice(0, 2)
+  .join('');
+
+const bios: Record<string, string> = {
+  'Priya Nair': 'Priya Nair leads AI and machine learning research at Aeris Research, with deep expertise in enterprise AI adoption, foundation model evaluation, and the competitive dynamics of the AI infrastructure stack. She has covered over 150 AI and software vendors across North America and Asia-Pacific.',
+  'default': `${authorName} is a senior research analyst at Aeris Research, specializing in independent technology evaluation and strategic market intelligence. Their work spans artificial intelligence, cloud infrastructure, and enterprise software sectors.`,
+};
+
+const bio = bios[authorName] ?? bios['default'];
+---
+
+<aside class="author-box" aria-label="About the author">
+  <div class="author-box__avatar" aria-hidden="true">{initials}</div>
+  <div class="author-box__info">
+    <p class="author-box__label">Written by</p>
+    <p class="author-box__name">{authorName}</p>
+    <p class="author-box__title">{authorTitle}</p>
+    <p class="author-box__bio">{bio}</p>
+  </div>
+</aside>

@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Services — Aeris Research" description="Aeris Research offers technology intelligence, vendor evaluation, due diligence, market sizing, advisory retainers, and custom research for enterprise buyers and investors.">
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero__content">
+        <p class="section__eyebrow">What We Offer</p>
+        <h1 class="page-hero__title">Our Services</h1>
+        <p class="page-hero__sub">Six integrated service lines — from rapid vendor snapshots to multi-quarter advisory engagements.</p>
+      </div>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <p style="font-size:1.1rem;color:var(--text-secondary);max-width:680px;line-height:1.8;">Aeris Research delivers independent technology intelligence across six service lines, each grounded in the same vendor-neutral, hands-on research methodology. Contact us to discuss which service best fits your intelligence requirements.</p>
+      <div style="margin-top:3rem;display:flex;flex-direction:column;gap:2.5rem;">
+        {[
+          { id:'tech-intelligence', title:'Technology Intelligence', desc:'Rigorous, vendor-neutral analysis of technology markets — covering product capabilities, competitive positioning, pricing strategy, and strategic trajectory across 62 technology sectors.' },
+          { id:'vendor-analysis', title:'Vendor Evaluation', desc:'Independent, structured vendor assessments using our proprietary 40-dimension scoring framework — for procurement decisions, RFP support, and board-level technology reviews.' },
+          { id:'due-diligence', title:'Technical Due Diligence', desc:'Product architecture reviews, engineering team assessments, and technical risk analysis for software M&A, venture investment, and secondary transactions.' },
+          { id:'sector-coverage', title:'Market Sizing & Forecasts', desc:'Bottom-up technology market sizing, TAM/SAM/SOM modelling, and 5-year sector forecasts built for investor decks, strategic planning, and regulatory submissions.' },
+          { id:'advisory-retainer', title:'Advisory Retainers', desc:'Ongoing access to Aeris analysts for continuous monitoring of your technology landscape — competitor moves, product launches, regulatory developments, and M&A.' },
+          { id:'custom-research', title:'Custom Research', desc:'Bespoke research programs commissioned by enterprise technology buyers, PE/VC funds, and strategy consultancies with specific, confidential intelligence requirements.' },
+        ].map(svc => (
+          <div id={svc.id} style="background:white;border:1px solid var(--border);border-radius:8px;padding:2.5rem;border-left:4px solid var(--teal);">
+            <h2 style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--dark);margin-bottom:1rem;">{svc.title}</h2>
+            <p style="color:var(--text-secondary);line-height:1.7;">{svc.desc}</p>
+            <a href="/contact" class="btn btn--teal" style="margin-top:1.5rem;">Enquire →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

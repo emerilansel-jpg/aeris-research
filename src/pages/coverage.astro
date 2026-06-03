@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Coverage Areas — Aeris Research" description="Aeris Research covers 62 technology sectors across North America, Europe, and Asia-Pacific — from AI and cloud to cybersecurity, fintech, and enterprise software.">
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero__content">
+        <p class="section__eyebrow">What We Cover</p>
+        <h1 class="page-hero__title">Coverage Areas</h1>
+        <p class="page-hero__sub">62 technology sectors across four global regions — with dedicated analyst teams, proprietary vendor databases, and longitudinal tracking.</p>
+      </div>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:2rem;">
+        {['Artificial Intelligence & ML','Cybersecurity & Zero Trust','Cloud Infrastructure','SaaS & Enterprise Software','Fintech & Digital Payments','Data & Analytics','Developer Tools & DevOps','Digital Transformation','IoT & Edge Computing','Quantum Computing','AR/VR & Spatial Computing','Blockchain & Web3'].map(area => (
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:1.5rem;border-top:3px solid var(--teal);">
+            <p style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--dark);">{area}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

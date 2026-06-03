@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const team = [
+  { name:'Priya Nair', role:'Head of AI Research', bio:'14 years covering enterprise AI, MLOps, and foundation model ecosystems. PhD Computer Science, MIT. Former Google Brain researcher.', photo:'/images/team-priya.png' },
+  { name:'Marcus Osei', role:'Director, Cybersecurity', bio:'Former CISO. Specialist in zero-trust architecture, XDR platform dynamics, and cloud security. CISSP, CISM certified.', photo:'/images/team-marcus.png' },
+  { name:'Sofia Lindqvist', role:'Senior Analyst, Cloud & SaaS', bio:'Multi-cloud strategy, FinOps economics, and vertical SaaS market development across European and North American markets.', photo:'/images/team-sofia.png' },
+  { name:'James Tan', role:'Senior Analyst, Fintech', bio:'Embedded finance, real-time payments infrastructure, and digital banking regulatory frameworks across APAC and EMEA markets.', photo:'/images/team-james.png' },
+  { name:'Aisha Mensah', role:'Research Analyst, Data & DevOps', bio:'Modern data stack architecture, platform engineering emergence, and developer productivity tooling across enterprise environments.', photo:'/images/team-aisha.png' },
+  { name:'Dr. Tomás Rivera', role:'Research Director', bio:'12 years in technology market research. Leads methodology, quality assurance, and analyst development programs across all Aeris coverage areas.', photo:'/images/team-tomas.png' },
+];
+---
+<BaseLayout title="Our Analysts — Aeris Research" description="Meet the Aeris Research analyst team — specialists in AI, cybersecurity, cloud, SaaS, fintech, and data across global technology markets.">
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero__content">
+        <p class="section__eyebrow">Our Analysts</p>
+        <h1 class="page-hero__title">The Research Team</h1>
+        <p class="page-hero__sub">Practitioner-turned-researchers who combine deep technical expertise with rigorous analytical discipline.</p>
+      </div>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="team-grid">
+        {team.map(m => (
+          <div class="team-card">
+            <div class="team-card__photo-wrap">
+              <img src={m.photo} alt={m.name} loading="lazy" class="team-card__photo" />
+            </div>
+            <div class="team-card__body">
+              <h3 class="team-card__name">{m.name}</h3>
+              <p class="team-card__role">{m.role}</p>
+              <p class="team-card__bio">{m.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,140 @@
+---
+// BaseLayout.astro — Base HTML shell for all pages
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  pageType?: 'homepage' | 'article' | 'default';
+  canonicalUrl?: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = 'Independent technology research and intelligence across AI, cloud, cybersecurity, and enterprise software.',
+  pageType = 'default',
+  canonicalUrl = Astro.url.href,
+  ogImage = '/images/og-default.jpg',
+  noindex = false,
+} = Astro.props;
+
+const ogImageAbsolute = ogImage.startsWith('http')
+  ? ogImage
+  : `https://aerisresearch.com${ogImage}`;
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Aeris Research',
+  url: 'https://aerisresearch.com',
+  description: 'Independent technology research and intelligence across AI, cloud, cybersecurity, and enterprise software.',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://aerisresearch.com/images/logo.svg',
+  },
+  sameAs: [
+    'https://www.linkedin.com/company/aeris-research',
+    'https://twitter.com/aerisresearch',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '580 Howard Street, Suite 400',
+    addressLocality: 'San Francisco',
+    addressRegion: 'CA',
+    postalCode: '94105',
+    addressCountry: 'US',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+1-415-555-0174',
+    contactType: 'customer service',
+    email: 'research@aerisresearch.com',
+  },
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Aeris Research',
+  url: 'https://aerisresearch.com',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://aerisresearch.com/research?q={search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+const pageTitle = title.split(' — ')[0].split(' | ')[0];
+const breadcrumbSchema = pageType !== 'homepage' ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aerisresearch.com' },
+    { '@type': 'ListItem', position: 2, name: pageTitle, item: canonicalUrl },
+  ],
+} : null;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    }
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content={pageType === 'article' ? 'article' : 'website'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Aeris Research" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aerisresearch" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+
+    {pageType === 'homepage' && (
+      <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    )}
+
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
+
+    <slot name="schema" />
+  </head>
+
+  <body>
+    <Header />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

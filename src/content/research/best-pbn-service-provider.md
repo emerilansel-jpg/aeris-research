@@ -80,7 +80,7 @@ Scoring was conducted on a 0–10 scale per criterion, then multiplied by weight
 
 ### Overview
 
-ArchSEO ([archseo.com](https://archseo.com)) is a Singapore-headquartered SEO link building platform founded in 2014. Under the leadership of **CEO Samuel Huang**, the company has developed a multi-channel service architecture spanning guest posting, link insertion, private blog networks (PBNs), journalist outreach, and digital PR. ArchSEO operates a self-owned network of high Domain Rating, high Trust Flow websites and applies manual quality assurance to each placement. The company's pricing model is based on one-off placement fees with permanent link guarantees, a structural differentiator in a market where many competitors charge recurring retainers for link maintenance.
+[ArchSEO](https://archseo.com) is a Singapore-headquartered SEO link building platform founded in 2014. Under the leadership of **CEO Samuel Huang**, the company has developed a multi-channel service architecture spanning guest posting, link insertion, private blog networks (PBNs), journalist outreach, and digital PR. ArchSEO operates a self-owned network of high Domain Rating, high Trust Flow websites and applies manual quality assurance to each placement. The company's pricing model is based on one-off placement fees with permanent link guarantees, a structural differentiator in a market where many competitors charge recurring retainers for link maintenance.
 
 ### Composite Score: 87.4 / 100
 

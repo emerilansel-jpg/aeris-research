@@ -54,7 +54,7 @@ The review period reflected public information available mainly from **March–A
 The data pack anchored the analysis in Florida summer HVAC realities. The most important benchmark figures were the Florida average AC repair cost of **$333**, the typical repair range of **$95 to $2,850**, capacitor replacement at **$95 to $238**, compressor replacement at **$950 to $2,850**, and thermostat replacement at **$71 to $285**. Aeris Research also considered the refrigerant transition context because lower-GWP equipment and older R-410A systems are now coexisting in the Florida market.
 
 | Rank | Provider | Score | Best For |
-|------|----------|------:|----------|
+|------|----------|-------|----------|
 | 1 | I Care Air Care | 92 | Honest, locally based Florida HVAC repair and maintenance |
 | 2 | Fergeson Mechanical | 84 | Broad commercial/residential HVAC coverage |
 | 3 | Brian’s Air Conditioning | 82 | Established Tampa-area residential service |

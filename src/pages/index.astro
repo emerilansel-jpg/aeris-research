@@ -649,6 +649,7 @@ const newsletterItems = [
               <label for="newsletter-hp">Company</label>
               <input type="text" id="newsletter-hp" name="company" tabindex="-1" autocomplete="off" />
             </div>
+            <div id="newsletter-thanks" style="display:none;background:#d1fae5;color:#065f46;padding:12px 16px;border-radius:6px;font-weight:600;">Thank you for subscribing.</div>
             <input
               type="email"
               name="email"
@@ -663,7 +664,7 @@ const newsletterItems = [
             (function () {
               var form = document.getElementById('newsletter-form');
               if (!form) return;
-              form.addEventListener('submit', function (e) {
+              form.addEventListener('submit', async function (e) {
                 e.preventDefault();
                 var honeypot = form.querySelector('input[name="company"]');
                 if (honeypot && honeypot.value) {
@@ -671,9 +672,30 @@ const newsletterItems = [
                   return;
                 }
                 var email = (form.querySelector('input[name="email"]')?.value || '').trim();
-                var subject = 'Subscribe to The Signal newsletter';
-                var body = 'Please subscribe the following email to The Signal newsletter:\n\n' + email;
-                window.location.href = 'mailto:research@aerisresearch.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+                var payload = {
+                  site: 'aerisresearch.com',
+                  name: 'Newsletter Subscriber',
+                  email: email,
+                  message: 'Subscribe to The Signal newsletter: ' + email,
+                  website: ''
+                };
+                try {
+                  var resp = await fetch('https://research-api.n311311.workers.dev/api/form/newsletter', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                  });
+                  if (resp.ok) {
+                    form.reset();
+                    var thanks = document.getElementById('newsletter-thanks');
+                    if (thanks) thanks.style.display = 'block';
+                  } else {
+                    var err = await resp.text().catch(function () { return 'Subscription failed'; });
+                    alert(err);
+                  }
+                } catch (err) {
+                  alert('Network error. Please try again.');
+                }
               });
             })();
           </script>

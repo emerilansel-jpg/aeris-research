@@ -644,7 +644,11 @@ const newsletterItems = [
             Every Friday, our analysts synthesize the week's most significant developments in AI, cloud, cybersecurity, and SaaS. No noise. No sponsored content. Just signal.
           </p>
 
-          <form class="newsletter__form" method="POST" action="/api/newsletter-subscribe" style="margin-top: 28px;">
+          <form id="newsletter-form" class="newsletter__form" style="margin-top: 28px;">
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+              <label for="newsletter-hp">Company</label>
+              <input type="text" id="newsletter-hp" name="company" tabindex="-1" autocomplete="off" />
+            </div>
             <input
               type="email"
               name="email"
@@ -655,6 +659,24 @@ const newsletterItems = [
             />
             <button type="submit" class="newsletter__submit">Subscribe free</button>
           </form>
+          <script is:inline>
+            (function () {
+              var form = document.getElementById('newsletter-form');
+              if (!form) return;
+              form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var honeypot = form.querySelector('input[name="company"]');
+                if (honeypot && honeypot.value) {
+                  console.warn('Honeypot filled. Submission blocked.');
+                  return;
+                }
+                var email = (form.querySelector('input[name="email"]')?.value || '').trim();
+                var subject = 'Subscribe to The Signal newsletter';
+                var body = 'Please subscribe the following email to The Signal newsletter:\n\n' + email;
+                window.location.href = 'mailto:research@aerisresearch.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+              });
+            })();
+          </script>
 
           <div class="newsletter__proof">
             <span class="newsletter__proof-item">6,800+ subscribers</span>

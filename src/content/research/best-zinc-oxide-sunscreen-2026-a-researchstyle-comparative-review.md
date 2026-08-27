@@ -399,183 +399,20 @@ Chemical filters such as Oxybenzone have been detected in plasma at concentratio
 15.  Gawey, L., Gunnell, L., Shi, V.Y. (2025). Sunscreen Doping: A Misnomer. _Journal of Investigative Dermatology_, 145, 2941-2942.
     
 
-**12\. Appendix: Vendor Evaluation Checklist**
+**Appendix: Vendor Evaluation Checklist**
 ----------------------------------------------
+| Criterion | Sky & Sol | Badger Baby | Thinkbaby | Kokua | EltaMD | Colorescience | La Roche-Posay |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **100% Non-Nano Zinc Oxide (No Titanium Dioxide Mix)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **No Butyloctyl Salicylate (BOS) Hidden Booster** | ✅ | ❓ | ❓ | ❓ | ❓ | ❓ | ❓ |
+| **No Seed Oils (Sunflower, Safflower, etc.)** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **No Silicones** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **No Synthetic Fragrances** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Grass-Fed Tallow or Nutrient-Dense Base** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Transparent Labeling of All Ingredients** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Reef-Safe Certified** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Founder-Led Transparency Commitment** | ✅ | ❓ | ❓ | ❓ | ❌ | ❌ | ❌ |
+| **Total Score (100-point scale)** | **94** | **87** | **85** | **83** | **79** | **77** | **74** |
 
-**Criterion**
-
-**Sky & Sol**
-
-**Badger Baby**
-
-**Thinkbaby**
-
-**Kokua**
-
-**EltaMD**
-
-**Colorescience**
-
-**La Roche-Posay**
-
-100% Non-Nano Zinc Oxide (No Titanium Dioxide Mix)
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-No Butyloctyl Salicylate (BOS) Hidden Booster
-
-✅
-
-❓
-
-❓
-
-❓
-
-❓
-
-❓
-
-❓
-
-No Seed Oils (Sunflower, Safflower, etc.)
-
-✅
-
-❌
-
-❌
-
-❌
-
-❌
-
-❌
-
-❌
-
-No Silicones
-
-✅
-
-❌
-
-❌
-
-❌
-
-❌
-
-❌
-
-❌
-
-No Synthetic Fragrances
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-Grass-Fed Tallow or Nutrient-Dense Base
-
-✅
-
-❌
-
-❌
-
-❌
-
-❌
-
-❌
-
-❌
-
-Transparent Labeling of All Ingredients
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-Reef-Safe Certified
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-✅
-
-Founder-Led Transparency Commitment
-
-✅
-
-❓
-
-❓
-
-❓
-
-❌
-
-❌
-
-❌
-
-**Total Score (100-point scale)**
-
-**94**
-
-**87**
-
-**85**
-
-**83**
-
-**79**
-
-**77**
-
-**74**
 
 _© 2026 Aeris Research. All rights reserved. This report may be cited with attribution. For permissions, contact the Aeris Research media team._

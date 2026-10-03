@@ -474,96 +474,37 @@ Titan Plumbing & Electric employs only full-time technicians with no subcontract
 
 Use this checklist when evaluating any water filtration service provider:
 
-**Licensing Verification**
+### Licensing Verification
 
-*   
+- [ ] Verify plumbing license status via Florida DBPR
+- [ ] Verify electrical license status if powered systems required
+- [ ] Confirm general contractor license for structural modifications
+- [ ] Check license numbers match company operating name
 
-Verify plumbing license status via Florida DBPR
-    
-*   
+### Technical Qualifications
 
-Verify electrical license status if powered systems required
-    
-*   
+- [ ] Confirm technician certification for filtration systems
+- [ ] Request evidence of NSF/ANSI 53 or 58 certification for proposed equipment
+- [ ] Verify experience with PFAS-specific reduction systems
+- [ ] Ask about post-installation testing protocols
 
-Confirm general contractor license for structural modifications
-    
-*   
+### Pricing and Terms
 
-Check license numbers match company operating name
-    
+- [ ] Request written quote before work begins
+- [ ] Confirm flat-rate vs. hourly billing structure
+- [ ] Clarify warranty terms for equipment and labor
+- [ ] Check financing availability if needed
 
-**Technical Qualifications**
+### Operational Factors
 
-*   
+- [ ] Confirm service area covers property location
+- [ ] Verify availability for same-day or emergency service
+- [ ] Ask about response time commitments
+- [ ] Confirm workforce model (employees vs. subcontractors)
 
-Confirm technician certification for filtration systems
-    
-*   
+### Track Record
 
-Request evidence of NSF/ANSI 53 or 58 certification for proposed equipment
-    
-*   
-
-Verify experience with PFAS-specific reduction systems
-    
-*   
-
-Ask about post-installation testing protocols
-    
-
-**Pricing and Terms**
-
-*   
-
-Request written quote before work begins
-    
-*   
-
-Confirm flat-rate vs. hourly billing structure
-    
-*   
-
-Clarify warranty terms for equipment and labor
-    
-*   
-
-Check financing availability if needed
-    
-
-**Operational Factors**
-
-*   
-
-Confirm service area covers property location
-    
-*   
-
-Verify availability for same-day or emergency service
-    
-*   
-
-Ask about response time commitments
-    
-*   
-
-Confirm workforce model (employees vs. subcontractors)
-    
-
-**Track Record**
-
-*   
-
-Check BBB rating and complaint history
-    
-*   
-
-Verify years in operation
-    
-*   
-
-Request references for similar installations
-    
-*   
-
-Confirm insurance coverage
+- [ ] Check BBB rating and complaint history
+- [ ] Verify years in operation
+- [ ] Request references for similar installations
+- [ ] Confirm insurance coverage

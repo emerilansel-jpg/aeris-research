@@ -860,21 +860,14 @@
         const files = await apiRequest('GET', `/api/cms/posts?repo=${encodeURIComponent(cfg.repo)}&branch=${encodeURIComponent(cfg.branch)}`);
         const mdFiles = Array.isArray(files) ? files.filter(f => f.name.endsWith('.md')) : [];
         if (mdFiles.length === 0) { container.innerHTML = '<div class="no-posts">No posts yet. Create your first post!</div>'; return; }
-        const posts = mdFiles.map(f => {
-          let title = f.name.replace('.md','');
-          let date = '';
-          let category = '';
-          if (f.content) {
-            try {
-              const raw = decodeURIComponent(escape(atob(f.content.replace(/\n/g,''))));
-              const fm = parseFrontmatter(raw);
-              title = fm.title || title;
-              date = fm.date || '';
-              category = fm.category || '';
-            } catch {}
-          }
-          return { slug: f.name.replace('.md',''), sha: f.sha, title, date, category };
-        });
+        const posts = await Promise.all(mdFiles.map(async f => {
+          try {
+            const data = await apiRequest('GET', `/api/cms/posts?repo=${encodeURIComponent(cfg.repo)}&branch=${encodeURIComponent(cfg.branch)}&path=${encodeURIComponent('src/content/research/' + f.name)}`);
+            const raw = decodeURIComponent(escape(atob(data.content.replace(/\n/g,''))));
+            const fm = parseFrontmatter(raw);
+            return { slug: f.name.replace('.md',''), sha: data.sha, title: fm.title || f.name.replace('.md','').replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()), date: fm.date || '', category: fm.category || '' };
+          } catch { return { slug: f.name.replace('.md',''), sha: f.sha, title: f.name.replace('.md','').replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()), date: '', category: '' }; }
+        }));
         posts.sort((a,b) => (b.date > a.date ? 1 : -1));
         let html = '<div class="posts-list">';
         for (const p of posts) {
@@ -920,10 +913,8 @@
       showPanelById('panel-new-post');
       setProgress(10, 'Loading post content…');
       try {
-        const files = await apiRequest('GET', `/api/cms/posts?repo=${encodeURIComponent(cfg.repo)}&branch=${encodeURIComponent(cfg.branch)}`);
-        const file = Array.isArray(files) ? files.find(f => f.name === `${slug}.md`) : null;
-        if (!file || !file.content) throw new Error('Post content not available from backend.');
-        const raw = decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
+        const data = await apiRequest('GET', `/api/cms/posts?repo=${encodeURIComponent(cfg.repo)}&branch=${encodeURIComponent(cfg.branch)}&path=${encodeURIComponent('src/content/research/' + slug + '.md')}`);
+        const raw = decodeURIComponent(escape(atob(data.content.replace(/\n/g,''))));
         const fm = parseFrontmatter(raw);
         const bodyMatch = raw.match(/^---[\s\S]*?---\r?\n([\s\S]*)$/);
         const body = bodyMatch ? bodyMatch[1].replace(/^<!-- schema:[^\n]*-->\n<script[\s\S]*?<\/script>\n?/,'').trim() : '';
@@ -935,7 +926,7 @@
         document.getElementById('post-category').value = fm.category || '';
         document.getElementById('post-description').value = fm.description || '';
         if (mde) mde.value(body);
-        editMode = { active: true, slug, sha: file.sha };
+        editMode = { active: true, slug, sha: data.sha };
         document.getElementById('edit-banner').style.display = 'flex';
         document.getElementById('edit-banner-slug').textContent = slug + '.md';
         document.getElementById('form-panel-title').textContent = 'Edit Post';
